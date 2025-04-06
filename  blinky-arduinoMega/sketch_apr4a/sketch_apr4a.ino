@@ -22,8 +22,8 @@ void toggleLED(void *parameter)
 }
 
 void setup() {
-   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  // initialize serial communication at 9600 bits per second:
+  //Serial.begin(9600);
 
   // configure LED pin
   pinMode(LED_BUILTIN, OUTPUT);
@@ -40,6 +40,7 @@ void setup() {
 
 }
 
-void loop() {
-  vTaskStartScheduler();
+void loop() 
+{
+  // Empty. Things are done in Tasks.
 }
