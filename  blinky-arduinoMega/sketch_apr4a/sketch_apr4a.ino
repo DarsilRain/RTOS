@@ -14,22 +14,25 @@ void toggleLED(void *parameter)
   {
     digitalWrite(LED_BUILTIN, HIGH);
     // wait 500ms
-    vTaskDelay(500/portTICK_PERIOD_MS);
+    vTaskDelay(1000/portTICK_PERIOD_MS);
     digitalWrite(LED_BUILTIN, LOW);
-    vTaskDelay(500/portTICK_PERIOD_MS);
+    vTaskDelay(1000/portTICK_PERIOD_MS);
 
   }
 }
 
 void setup() {
+   // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+
   // configure LED pin
   pinMode(LED_BUILTIN, OUTPUT);
 
   // RTOS task
   xTaskCreate(
     toggleLED, //function to call
-    "Toggle LED", // name of task
-    1024, // stack size (in words)
+    "ToggleLED", // name of task
+    128, // stack size (in words)
     NULL, // parameter to pass to function
     1, // task priority (higher num means higher priority)
     NULL // task handle
@@ -39,5 +42,4 @@ void setup() {
 
 void loop() {
   vTaskStartScheduler();
-
 }
